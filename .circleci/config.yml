@@ -43,11 +43,11 @@ jobs:
           id: << pipeline.id >> ##passing paramter to the command
       - run: 
           name: Running Special Command
-          command: return 1
+          command: exit 1
           shell: /bin/bash
       - run:
           name: Upload Failed Tests
-          command: echo 'handle failed special command executed'
+          command: echo 'handled failed special command executed'
           when: on_fail
 workflows:
   # Name the workflow "welcome"
