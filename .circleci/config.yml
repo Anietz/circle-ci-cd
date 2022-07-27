@@ -6,8 +6,12 @@ version: 2.1
 ##### using commands
 commands:
     print_pipeline_id:
+      parameters:
+          id:
+            type: string
       steps:
-        - run: echo $CIRCLE_WORKFLOW_ID
+        - run: echo << parameters.id >>
+        #- run: echo $CIRCLE_WORKFLOW_ID
 
 #### using anchors
 default: &dockerImage
@@ -35,7 +39,8 @@ jobs:
   test_command:
     << : *dockerImage
     steps:
-      - print_pipeline_id
+      - print_pipeline_id:  
+          id: echo << pipeline.id >> ##passing paramter to the command
 workflows:
   # Name the workflow "welcome"
   myworkflow:
