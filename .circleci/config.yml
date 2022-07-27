@@ -7,10 +7,10 @@ jobs:
     docker:
       - image: circleci/node:13.8.0
     steps:
-      - run: echo 'hello now' > output.txt
+      - run: echo "hello now" >  ~/output.txt
       - persist_to_workspace:
           root: ~/
-            paths:      # file globs which will be persisted to the workspace
+          paths:      # file globs which will be persisted to the workspace
               - output.txt
   print_output_file:
     docker:
@@ -20,10 +20,10 @@ jobs:
           at: ~/ # relative path to our working directory
       - run:
           command: |
-           cat output.txt
+           cat ~/output.txt
 workflows:
   # Name the workflow "welcome"
-  welcome:
+  myworkflow:
     # Run the welcome/run job in its own container
     jobs:
       - save_hello_world_output
