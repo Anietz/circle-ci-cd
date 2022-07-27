@@ -3,17 +3,21 @@ version: 2.1
 # Use a package of configuration called an orb.
 # Orchestrate or schedule a set of jobs
 
-
+##### using commands
 commands:
     print_pipeline_id:
       steps:
         - run: echo $CIRCLE_WORKFLOW_ID
 
+#### using anchors
+default: &dockerImage
+  docker:
+  - image: circleci/node:13.8.0
+
 
 jobs:
   save_hello_world_output:
-    docker:
-      - image: circleci/node:13.8.0
+    << : *dockerImage
     steps:
       - run: echo "hello now" >  ~/output.txt
       - persist_to_workspace:
