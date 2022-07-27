@@ -8,13 +8,16 @@ jobs:
       - image: circleci/node:13.8.0
     steps:
       - run: echo 'hello now' > output.txt
-    persist_to_workspace:
-      root: .
-          paths:      # file globs which will be persisted to the workspace
-           - output.txt
+      - persist_to_workspace:
+          root: ~/
+            paths:      # file globs which will be persisted to the workspace
+              - output.txt
   print_output_file:
+    docker:
+      - image: circleci/node:13.8.0
+    steps:
       - attach_workspace:
-          at: . # relative path to our working directory
+          at: ~/ # relative path to our working directory
       - run:
           command: |
            cat output.txt
