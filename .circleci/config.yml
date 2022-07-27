@@ -21,6 +21,14 @@ jobs:
       - run:
           command: |
            cat ~/output.txt
+  test_command:
+    docker:
+      - image: circleci/node:13.8.0
+    steps:
+      command:
+          print_pipeline_id:
+          steps:
+            - run: echo $CIRCLE_WORKFLOW_ID
 workflows:
   # Name the workflow "welcome"
   myworkflow:
@@ -30,3 +38,4 @@ workflows:
       - print_output_file:
           requires:
             - save_hello_world_output
+      - test_command
