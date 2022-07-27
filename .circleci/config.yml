@@ -25,8 +25,7 @@ jobs:
           paths:      # file globs which will be persisted to the workspace
               - output.txt
   print_output_file:
-    docker:
-      - image: circleci/node:13.8.0
+    << : *dockerImage
     steps:
       - attach_workspace:
           at: ~/ # relative path to our working directory
@@ -34,8 +33,7 @@ jobs:
           command: |
            cat ~/output.txt
   test_command:
-    docker:
-      - image: circleci/node:13.8.0
+    << : *dockerImage
     steps:
       - print_pipeline_id
 workflows:
