@@ -40,7 +40,7 @@ jobs:
     << : *dockerImage
     steps:
       - print_pipeline_id:  
-          id: echo << pipeline.id >> ##passing paramter to the command
+          id: << pipeline.id >> ##passing paramter to the command
 workflows:
   # Name the workflow "welcome"
   myworkflow:
