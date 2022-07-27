@@ -36,6 +36,14 @@ jobs:
       - run:
           command: |
            cat ~/output.txt
+      - run: 
+          name: Running Special Command
+          command: return 1
+          shell: /bin/bash
+       - run:
+          name: Upload Failed Tests
+          command: echo 'handle failed special command executed'
+          when: on_fail
   test_command:
     << : *dockerImage
     steps:
